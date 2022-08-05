@@ -16,7 +16,6 @@ module.exports.handleAddProduct = function(req, res) {
                body: {}
            })
        });
-    // return res.status(200).json({name: 'new product', price: 30})
 }
 
 module.exports.handleGetAllProducts = function (req, res){
@@ -25,4 +24,19 @@ module.exports.handleGetAllProducts = function (req, res){
     }).catch(err => {
         return res.json(err);
     })
+}
+
+module.exports.handleGetProductById = function (req, res){
+    const id  = req.params['id'];
+    productService.fetchById(id).then(prod => {
+        if(prod){
+            return res.json(prod);
+        }
+        return res.json({
+            message: 'could not find product with id ' + id,
+            status: 404
+        })
+    }).catch(err => {
+        res.json(err);
+    });
 }

@@ -1,6 +1,7 @@
 const express = require('express');
 const compression = require('compression');
-const cors = require('cors')
+const cors = require('cors');
+
 const productRouter = require('./routers/products.router')
 const connectDatabase = require('./database/connection');
 

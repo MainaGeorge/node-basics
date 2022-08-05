@@ -8,3 +8,7 @@ module.exports.addProduct = async function(productData){
 module.exports.fetchAllProducts = async function (){
     return Product.find({});
 }
+
+module.exports.fetchById = function(id){
+    return Product.findById(id);
+}
