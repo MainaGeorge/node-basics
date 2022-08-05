@@ -15,10 +15,9 @@ app.use(cors());
 app.use(compression());
 app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log(req.path);
-    next();
-});
+// app.use((req, res, next) => {
+//     next();
+// });
 
 app.use(`${process.env.API_VERSION}/products`, productRouter);
 
