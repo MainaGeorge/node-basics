@@ -1,0 +1,21 @@
+{
+  "name": "api_node_express",
+  "version": "1.0.0",
+  "description": "This is a learning project for node and express",
+  "main": "server.js",
+  "scripts": {
+    "run-dev": "nodemon --watch server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.1",
+    "uri-js": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
