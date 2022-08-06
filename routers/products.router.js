@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.post('/', validationMiddleware.validateProductSchema(createProductSchema), productController.handleAddProduct);
 router.get('/', validationMiddleware.validateQueryString(paginationSchema), productController.handleGetAllProducts);
-router.get('/:id', productController.handleGetProductById)
+router.get('/:id', productController.handleGetProductById);
+router.delete('/:id', productController.handleDeleteProductById);
 
 module.exports = router;

@@ -41,3 +41,25 @@ module.exports.handleGetProductById = function (req, res){
         res.json(err);
     });
 }
+
+module.exports.handleDeleteProductById = function(req, res){
+    const id  = req.params['id'];
+    productService.deleteById(id)
+        .then(data => {
+            if(data){
+                return res.status(204).json({
+                    message: 'deleted successfully',
+                    status: 204,
+                    body: data
+                })
+            }
+            return res.json({
+                message: 'could not find product with id ' + id,
+                status: 404,
+                body: data
+            })
+        })
+        .catch(err => {
+            return res.json(err);
+        })
+}

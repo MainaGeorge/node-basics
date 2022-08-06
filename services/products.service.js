@@ -13,6 +13,10 @@ module.exports.fetchAllProducts = async function ({pageNumber=1, pageSize=5}){
     return Product.find({}).skip(skip).limit(pageSize);
 }
 
-module.exports.fetchById = function(id){
+module.exports.fetchById = async function(id){
     return Product.findById(id);
+}
+
+module.exports.deleteById = async function (id){
+    return Product.findByIdAndRemove(id);
 }
