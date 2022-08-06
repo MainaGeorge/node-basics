@@ -16,3 +16,16 @@ module.exports.validateProductSchema = (productSchema) => {
             });
     }
 }
+
+module.exports.validateQueryString = (paginationSchema) => {
+    return (req, res, next) => {
+        validateObjectAgainstSchema(req.query, paginationSchema)
+            .then(_ => {
+                next()
+            })
+            .catch(err => {
+                const errors = err.details.map(e => e.message);
+                res.status(400).json({status: 400, body: errors, message: 'you entered query parameters not allowed'})
+            })
+    }
+}

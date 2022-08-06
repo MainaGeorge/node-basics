@@ -19,7 +19,7 @@ module.exports.handleAddProduct = function(req, res) {
 }
 
 module.exports.handleGetAllProducts = function (req, res){
-    productService.fetchAllProducts().then(products => {
+    productService.fetchAllProducts(req.query).then(products => {
         return res.json(products);
     }).catch(err => {
         return res.json(err);
@@ -34,7 +34,8 @@ module.exports.handleGetProductById = function (req, res){
         }
         return res.json({
             message: 'could not find product with id ' + id,
-            status: 404
+            status: 404,
+            body: prod
         })
     }).catch(err => {
         res.json(err);

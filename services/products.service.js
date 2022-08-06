@@ -5,8 +5,12 @@ module.exports.addProduct = async function(productData){
     return await product.save();
 }
 
-module.exports.fetchAllProducts = async function (){
-    return Product.find({});
+module.exports.fetchAllProducts = async function ({pageNumber=1, pageSize=5}){
+    pageSize = parseInt(pageSize);
+    pageNumber = parseInt(pageNumber);
+
+    const skip = (pageNumber - 1) * pageSize;
+    return Product.find({}).skip(skip).limit(pageSize);
 }
 
 module.exports.fetchById = function(id){
