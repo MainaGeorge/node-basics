@@ -5,20 +5,19 @@ const cors = require('cors');
 const productRouter = require('./routers/products.router')
 const connectDatabase = require('./database/connection');
 
-
-connectDatabase()
-    .then(() => console.log('database online'))
-    .catch(err => console.log(err));
-
 const app = express();
-
 app.use(cors());
 app.use(compression());
 app.use(express.json());
 
 app.use(`${process.env.API_VERSION}/products`, productRouter);
 
-app.listen(process.env.PORT, function(){
-    console.log(`up and running on port ${process.env.PORT}`)
-})
+connectDatabase()
+    .then(() => {
+        app.listen(process.env.PORT, function(){
+            console.log(`up and running on port ${process.env.PORT}`)
+        })
+    })
+    .catch(err => console.log(err));
+
 

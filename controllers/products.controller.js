@@ -26,7 +26,6 @@ module.exports.handleUpdateProductById = function(req, res){
         .catch(err => handleDatabaseErrorResponse(res, err))
 }
 
-
 module.exports.handleDeleteProductById = function(req, res){
     const id = req.params['id'];
     productService.deleteById(id)
