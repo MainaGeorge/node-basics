@@ -4,9 +4,9 @@ const validateObjectAgainstSchema =  async (objectToValidate, schemaToValidateAg
     return schemaToValidateAgainst.validateAsync(objectToValidate, {convert: false, abortEarly: false});
 }
 
-module.exports.validateProductSchema = (productSchema) => {
+module.exports.validateSchema = (schemaToValidateAgainst) => {
     return function(req, res, next){
-        validateObjectAgainstSchema(req.body, productSchema)
+        validateObjectAgainstSchema(req.body, schemaToValidateAgainst)
             .then(_ => next())
             .catch(err => {
                 const errors = err.details.map(err => err.message);
@@ -35,7 +35,6 @@ module.exports.validateQueryString = (paginationSchema) => {
 module.exports.validateObjectId = () => {
     return function(req, res, next){
         const id = req.params['id'];
-        console.log(id);
         if(mongoose.Types.ObjectId.isValid(id)){
             next();
         }else{

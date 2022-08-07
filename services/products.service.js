@@ -18,5 +18,9 @@ module.exports.fetchById = async function(id){
 }
 
 module.exports.deleteById = async function (id){
-    return Product.findByIdAndRemove(id);
+    return Product.findOneAndDelete(id);
+}
+
+module.exports.updateProduct = async function(id, updatedProduct){
+    return Product.findByIdAndUpdate(id, updatedProduct, {returnOriginal: false});
 }
