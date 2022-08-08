@@ -26,9 +26,13 @@ module.exports.handleSuccessResponse = (req, res, data) => {
 }
 
 module.exports.handleDatabaseErrorResponse = function(res, error){
-    return res.status(500).json({
-        message: 'something went wrong while performing the database operation',
-        status: 500,
+    let status = 500;
+    if(error.message && error.message.includes('exists')) {
+        status = 400;
+    }
+    return res.status(status).json({
+        message: error.message ?? 'something went wrong',
+        status: status,
         body: error
     })
 }
