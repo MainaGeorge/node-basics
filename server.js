@@ -3,6 +3,7 @@ const compression = require("compression");
 const cors = require("cors");
 
 const productRouter = require("./routers/products.router");
+const usersRouter = require("./routers/users.router");
 const connectDatabase = require("./database/connection");
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(compression());
 app.use(express.json());
 
 app.use(`${process.env.API_VERSION}/products`, productRouter);
+app.use(`${process.env.API_VERSION}/users`, usersRouter);
 
 connectDatabase()
   .then(() => {

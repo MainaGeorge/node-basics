@@ -1,7 +1,7 @@
 const express = require('express');
 const {handleGetAllProducts, handleGetProductById, handleAddProduct, handleUpdateProductById, handleDeleteProductById} = require('../controllers/products.controller');
 const {createProductSchema, updateProductSchema} = require('../apiSchemasValidators/productSchemaValidator');
-const {validateQueryString, validateObjectId, validateSchema} = require('../validationsMiddleware/productModel.validator');
+const {validateQueryString, validateObjectId, validateSchema} = require('../validationsMiddleware/schemaValidator');
 const {paginationSchema} = require('../apiSchemasValidators/paginationDataValidator');
 
 
