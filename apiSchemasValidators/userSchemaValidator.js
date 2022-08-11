@@ -6,3 +6,8 @@ module.exports.createUserSchema = joi.object({
   username: joi.string().required().max(15),
   confirmPassword: joi.ref("password"),
 });
+
+module.exports.loginUserSchema = joi.object({
+  username: joi.string().max(15).required(),
+  password: joi.string().required().alphanum()
+})
