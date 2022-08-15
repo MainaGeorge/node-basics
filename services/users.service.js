@@ -20,3 +20,7 @@ module.exports.createUser = async (userToBeCreated) => {
 module.exports.fetchUsers = () => {
     return User.find({})
 }
+
+module.exports.login = (email) => {
+    return User.findOne({email});
+}

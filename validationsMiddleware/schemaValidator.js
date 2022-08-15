@@ -45,3 +45,15 @@ module.exports.validateObjectId = () => {
         }
     }
 }
+
+module.exports.validateToken = function(req, res, next){
+    const authHeaderValue = req.headers['authorization'];
+    if(!authHeaderValue){
+        return res.status(401).json({
+            message: 'you need to be logged in to perform that action',
+            status: 401
+        })
+    }
+
+    next();
+}
