@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 const validateObjectAgainstSchema =  async (objectToValidate, schemaToValidateAgainst) => {
     return schemaToValidateAgainst.validateAsync(objectToValidate, {convert: false, abortEarly: false});
@@ -54,6 +56,14 @@ module.exports.validateToken = function(req, res, next){
             status: 401
         })
     }
-
+    const token = authHeaderValue.split('Bearer ')[1];
+    console.log(token);
+    const validToken = jwt.verify(token, process.env.APP_SECRET);
+    if(!validToken){
+        return res.status(401).json({
+            message: 'invalid or expired token, please sign in again',
+            status: 401
+        })
+    }
     next();
 }
