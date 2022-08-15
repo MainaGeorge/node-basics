@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Product = require("./models/product.model");
-const seedProductData = require("./seedData/product.seedData");
+const {seedProductData, seedUserData
+} = require("./seedData/seedData");
 
 require("dotenv").config({ path: "./.env" });
 
@@ -16,6 +17,7 @@ module.exports = async function connect() {
     .then((count) => {
       if (count < 3) {
         seedProductData();
+        seedUserData();
       }
     });
 };
